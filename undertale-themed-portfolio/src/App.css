@@ -160,15 +160,3 @@
     height: 48px;
   }
 }
-
-
-
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
-  }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
-  }
-}

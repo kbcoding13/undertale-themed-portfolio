@@ -17,7 +17,7 @@ function App() {
         <div>
           <h1>Karl Belleza</h1>
           <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
+            
           </p>
         </div>
       </section>

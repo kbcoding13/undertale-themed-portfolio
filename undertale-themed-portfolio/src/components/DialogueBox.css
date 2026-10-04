@@ -1,0 +1,97 @@
+/*
+ * Geometry is lifted verbatim from the undertale-dialogues canvas renderer so
+ * the box matches the game: 582x154 frame, 142px face at (6,6), 32px text at
+ * x=172 on a 38px grid, wrapped at 370px, three lines to a page.
+ *
+ * --px is one source pixel expressed in container units, so every value below
+ * can stay as its original pixel count while the whole box scales fluidly.
+ */
+.dialogue-box {
+  --px: calc(100cqw / 582);
+
+  container-type: inline-size;
+  position: relative;
+  width: 582px;
+  max-width: 100%;
+  aspect-ratio: 582 / 154;
+  margin: 0 auto;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+  /* Falls back to the plain hand if the soul cursor is unavailable. */
+  cursor: var(--cursor-soul), pointer;
+  user-select: none;
+  text-align: left;
+}
+
+.dialogue-box:focus-visible {
+  outline: calc(3 * var(--px)) solid #fff;
+  outline-offset: calc(2 * var(--px));
+}
+
+.dialogue-face {
+  position: absolute;
+  left: calc(6 * var(--px));
+  top: calc(6 * var(--px));
+  width: calc(142 * var(--px));
+  height: calc(142 * var(--px));
+  image-rendering: pixelated;
+}
+
+.dialogue-asterisk,
+.dialogue-text {
+  position: absolute;
+  top: calc(22 * var(--px));
+  margin: 0;
+  color: #fff;
+  font-size: calc(32 * var(--px));
+  line-height: calc(38 * var(--px));
+  /* The pixel glyphs are meant to be hard-edged; the global antialiasing in
+     index.css would otherwise blur them at this size. */
+  -webkit-font-smoothing: none;
+  font-smooth: never;
+}
+
+.dialogue-asterisk {
+  left: calc(142 * var(--px));
+}
+
+.dialogue-text {
+  left: calc(172 * var(--px));
+  width: calc(370 * var(--px));
+  /* The component measures and inserts the line breaks itself, so pre-wrap
+     honours them while still wrapping anything that overshoots. */
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+/* The blinking triangle that means "there is more to read". */
+.dialogue-more {
+  position: absolute;
+  right: calc(22 * var(--px));
+  bottom: calc(18 * var(--px));
+  width: 0;
+  height: 0;
+  border-left: calc(9 * var(--px)) solid transparent;
+  border-right: calc(9 * var(--px)) solid transparent;
+  border-top: calc(11 * var(--px)) solid #fff;
+  animation: dialogue-blink 1s steps(1, end) infinite;
+}
+
+@keyframes dialogue-blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  50.01%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dialogue-more {
+    animation: none;
+  }
+}
+

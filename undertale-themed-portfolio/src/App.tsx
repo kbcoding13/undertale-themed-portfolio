@@ -1,110 +1,55 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
 import './App.css'
 
 import avatar from './assets/me-pixel-avatar.png'
+import DialogueBox from './components/DialogueBox'
+import TopNav from './components/TopNav'
+
+/**
+ * Nav and page sections come from one list, so adding a section gives it a
+ * button automatically. `art` is the file stem in assets/buttons; a name with
+ * no art falls back to a text button until the sprite exists.
+ */
+const SECTIONS = [
+  { id: 'education', title: 'Education', art: 'edu' },
+  { id: 'skills', title: 'Skills', art: 'fight' },
+  { id: 'projects', title: 'Projects', art: 'act' },
+  { id: 'achievements', title: 'Achievements', art: 'item' },
+  { id: 'content', title: 'Content', art: 'mercy' },
+]
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <section id="center">
-        <div className="hero">
-          <img src={avatar} className="base"/>
-        </div>
+      <TopNav items={SECTIONS} />
+
+      <section id="home" className="section section--hero">
+        <h1>Karl Belleza</h1>
+        <h2>Looking to specialise in Software Engineering</h2>
+
         <div>
-          <h1>Karl Belleza</h1>
-          <p>
-            
-          </p>
+          <div className="hero">
+            <img src={avatar} className="base" alt="" />
         </div>
+          <DialogueBox
+            character="sans"
+            mode="wink"
+            text="Welcome to my portfolio website. you might know me from my videos
+              or my linkedin but it's cool to see you here. What I have is just my
+              projects, my experience, and most notably what I've done at my time
+              at uni, call it a Uni/Job Portfolio if you will. happy hunting"
+          />
+        </div>
+
       </section>
 
+      {SECTIONS.map(({ id, title }) => (
+        <section key={id} id={id} className="section">
+          <h2>{title}</h2>
+          {/* Content goes here. */}
+        </section>
+      ))}
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/kbcoding13" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <section id="spacer"></section>
+      <div id="spacer" />
     </>
   )
 }

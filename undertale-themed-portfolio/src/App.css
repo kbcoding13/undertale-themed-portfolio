@@ -65,9 +65,9 @@
   place-content: center;
   place-items: center;
   padding: 64px 32px;
-  /* Stops a section heading from landing underneath the sticky navbar when
-     jumped to from the menu. */
-  scroll-margin-top: calc(var(--topnav-h) + 24px);
+  /* Stops a section heading from landing underneath the top bar when jumped
+     to from the nav. Zero on desktop, where the nav is a left column. */
+  scroll-margin-top: calc(var(--topbar-h) + 24px);
 
   @media (max-width: 1024px) {
     padding: 32px 20px 24px;
@@ -79,9 +79,9 @@
    every section would make them split the viewport between them. */
 .section--hero {
   flex-grow: 1;
-  /* Minus the navbar, so the first screen fills exactly and doesn't push a
+  /* Minus the top bar, so the first screen fills exactly and doesn't push a
      sliver of the next section into view. */
-  min-height: calc(100svh - var(--topnav-h));
+  min-height: calc(100svh - var(--topbar-h));
   box-sizing: border-box;
 }
 

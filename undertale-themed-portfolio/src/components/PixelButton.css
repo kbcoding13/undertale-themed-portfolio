@@ -7,6 +7,10 @@
   width: calc(109px * var(--button-scale));
   aspect-ratio: 109 / 39;
   flex: 0 0 auto;
+  /* Strip the browser's default button chrome — the sprite is the button. */
+  padding: 0;
+  border: none;
+  background: none;
 }
 
 .pixel-button img {
@@ -24,45 +28,18 @@
 }
 
 .pixel-button:hover .pixel-button__selected,
-.pixel-button:focus-visible .pixel-button__selected,
-.pixel-button.is-active .pixel-button__selected {
+.pixel-button:focus-visible .pixel-button__selected {
   opacity: 1;
 }
 
 .pixel-button:hover .pixel-button__idle,
-.pixel-button:focus-visible .pixel-button__idle,
-.pixel-button.is-active .pixel-button__idle {
+.pixel-button:focus-visible .pixel-button__idle {
   opacity: 0;
 }
 
 .pixel-button:focus-visible {
   outline: 2px solid #ffcc00;
   outline-offset: 4px;
-}
-
-/* Stand-in for a button whose art hasn't been drawn yet: same footprint, same
-   orange-to-yellow hover, built from CSS instead of a sprite. */
-.pixel-button--text {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  border: 4px solid #ff9c00;
-  background: #000;
-  color: #ff9c00;
-  font-family: var(--heading);
-  font-size: calc(17px * var(--button-scale));
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  text-decoration: none;
-  -webkit-font-smoothing: none;
-}
-
-.pixel-button--text:hover,
-.pixel-button--text:focus-visible,
-.pixel-button--text.is-active {
-  border-color: #ffcc00;
-  color: #ffcc00;
 }
 
 /* The row of four, laid out like the battle menu under the dialogue box. */

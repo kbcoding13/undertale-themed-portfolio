@@ -1,0 +1,89 @@
+/*
+ * A row across the top, items pushed to the right. Fixed, so it stays reachable
+ * while scrolling; <body> reserves its height (see index.css) so nothing starts
+ * underneath it.
+ */
+.site-nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: var(--topbar-h);
+  box-sizing: border-box;
+  z-index: 10;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 24px;
+}
+
+.site-nav__list {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-nav__link {
+  display: block;
+  padding: 8px 12px;
+  color: var(--text);
+  font-family: var(--heading);
+  font-size: 15px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  /* The pixel glyphs are meant to be hard-edged; the global antialiasing in
+     index.css would otherwise blur them. */
+  -webkit-font-smoothing: none;
+  font-smooth: never;
+}
+
+.site-nav__link:hover,
+.site-nav__link:focus-visible,
+.site-nav__link.is-active {
+  color: #ffcc00;
+}
+
+.site-nav__link:focus-visible {
+  outline: 2px solid #ffcc00;
+  outline-offset: -2px;
+}
+
+@media (max-width: 1024px) {
+  .site-nav {
+    padding: 0 12px;
+  }
+
+  .site-nav__link {
+    padding: 8px 9px;
+    font-size: 13px;
+    letter-spacing: 1px;
+  }
+}
+
+/*
+ * Too narrow for six items in a row: let them scroll sideways rather than
+ * wrap into a tall bar. Alignment flips to the left so the first item is the
+ * one visible at rest.
+ */
+@media (max-width: 760px) {
+  .site-nav {
+    justify-content: flex-start;
+    padding: 0;
+  }
+
+  .site-nav__list {
+    width: 100%;
+    gap: 0;
+    overflow-x: auto;
+    /* Hidden because this is a nav bar, not a scroll region to look at. */
+    scrollbar-width: none;
+  }
+
+  .site-nav__list::-webkit-scrollbar {
+    display: none;
+  }
+}

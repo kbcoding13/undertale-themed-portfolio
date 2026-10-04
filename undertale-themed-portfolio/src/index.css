@@ -42,15 +42,15 @@
   --mono: 'Determination Mono', ui-monospace, Consolas, monospace;
 
   /* The two numbers are the hotspot — the pixel of the image treated as the
-     point. The soul is a 64px square, so its centre is 32 32. */
-  --cursor-soul: url('./assets/red-soul-cursor.png') 32 32;
+     point. The soul is a 48px square, so its centre is 24 24. */
+  --cursor-soul: url('./assets/red-soul-cursor.png') 24 24;
 
-  /* Height of the sticky navbar. The hero subtracts it so the first screen
-     still fits exactly, and sections offset by it when jumped to. */
-  --topnav-h: 52px;
+  /* Height of the fixed top nav. Body padding reserves the space, and the hero
+     height and scroll offsets derive from it. */
+  --topbar-h: 52px;
 
   @media (max-width: 1024px) {
-    --topnav-h: 40px;
+    --topbar-h: 44px;
   }
 
   font: 18px/145% var(--sans);
@@ -111,6 +111,8 @@ html {
 
 body {
   margin: 0;
+  /* Reserves the fixed nav's height so content doesn't start underneath it. */
+  padding-top: var(--topbar-h);
   /* The keyword after the comma is the fallback if the image fails to load or
      the browser rejects it. */
   cursor: var(--cursor-soul), auto;

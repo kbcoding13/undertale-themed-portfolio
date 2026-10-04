@@ -2,25 +2,37 @@ import './App.css'
 
 import avatar from './assets/me-pixel-avatar.png'
 import DialogueBox from './components/DialogueBox'
-import TopNav from './components/TopNav'
+import PixelButton from './components/PixelButton'
+import SiteNav from './components/SiteNav'
+
+/** The page's sections, in document order. */
+const SECTIONS = [
+  { id: 'aboutme', title: 'About Me'},
+  { id: 'education', title: 'Education' },
+  { id: 'skills', title: 'Skills' },
+  { id: 'projects', title: 'Projects' },
+  { id: 'achievements', title: 'Achievements' },
+  { id: 'content', title: 'Content' },
+]
+
+/** Nav adds a link back to the hero, which already carries id="home". */
+const NAV = [{ id: 'home', title: 'Home' }, ...SECTIONS]
 
 /**
- * Nav and page sections come from one list, so adding a section gives it a
- * button automatically. `art` is the file stem in assets/buttons; a name with
- * no art falls back to a text button until the sprite exists.
+ * The battle menu. Not navigation — these are inert for now, waiting on
+ * whatever they're going to do. Give an item an `onClick` to wire it up.
  */
-const SECTIONS = [
-  { id: 'education', title: 'Education', art: 'edu' },
-  { id: 'skills', title: 'Skills', art: 'fight' },
-  { id: 'projects', title: 'Projects', art: 'act' },
-  { id: 'achievements', title: 'Achievements', art: 'item' },
-  { id: 'content', title: 'Content', art: 'mercy' },
+const BATTLE_BUTTONS = [
+  { name: 'fight', label: 'Fight' },
+  { name: 'act', label: 'Act' },
+  { name: 'item', label: 'Item' },
+  { name: 'mercy', label: 'Mercy' },
 ]
 
 function App() {
   return (
     <>
-      <TopNav items={SECTIONS} />
+      <SiteNav items={NAV} />
 
       <section id="home" className="section section--hero">
         <h1>Karl Belleza</h1>
@@ -29,7 +41,7 @@ function App() {
         <div>
           <div className="hero">
             <img src={avatar} className="base" alt="" />
-        </div>
+          </div>
           <DialogueBox
             character="sans"
             mode="wink"
@@ -40,6 +52,13 @@ function App() {
           />
         </div>
 
+        <ul className="battle-menu">
+          {BATTLE_BUTTONS.map(button => (
+            <li key={button.name}>
+              <PixelButton {...button} />
+            </li>
+          ))}
+        </ul>
       </section>
 
       {SECTIONS.map(({ id, title }) => (

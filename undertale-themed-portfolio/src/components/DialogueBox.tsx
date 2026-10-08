@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import './DialogueBox.css'
 import boxBg from '../assets/characters/background.png'
+import redSoulCursor from '../assets/red-soul-cursor.png'
 
 // Vite resolves every sprite at build time into a { path: url } map, so adding a
 // new character is a matter of dropping the .png in — no import to write here.
@@ -236,7 +237,7 @@ function DialogueBox({
       >
         {pageText.slice(0, shown)}
       </p>
-      {hasMore && <span className="dialogue-more" aria-hidden="true" />}
+      {hasMore && <span className="dialogue-more" aria-hidden="true"/> && <img src={redSoulCursor} className='pixel-button__soul' alt='redSoul'></img>}
     </div>
   )
 }

@@ -2,8 +2,8 @@ import './App.css'
 
 import avatar from './assets/me-pixel-avatar.png'
 import DialogueBox from './components/DialogueBox'
-import PixelButton from './components/PixelButton'
 import SiteNav from './components/SiteNav'
+import BattleMenu from './components/BattleMenu'
 
 /** The page's sections, in document order. */
 const SECTIONS = [
@@ -22,12 +22,7 @@ const NAV = [{ id: 'home', title: 'Home' }, ...SECTIONS]
  * The battle menu. Not navigation — these are inert for now, waiting on
  * whatever they're going to do. Give an item an `onClick` to wire it up.
  */
-const BATTLE_BUTTONS = [
-  { name: 'fight', label: 'Fight' },
-  { name: 'act', label: 'Act' },
-  { name: 'item', label: 'Item' },
-  { name: 'mercy', label: 'Mercy' },
-]
+
 
 function App() {
   return (
@@ -51,14 +46,9 @@ function App() {
               at uni, call it a Uni/Job Portfolio if you will. happy hunting"
           />
         </div>
+      
+      <BattleMenu />
 
-        <ul className="battle-menu">
-          {BATTLE_BUTTONS.map(button => (
-            <li key={button.name}>
-              <PixelButton {...button} />
-            </li>
-          ))}
-        </ul>
       </section>
 
       {SECTIONS.map(({ id, title }) => (
